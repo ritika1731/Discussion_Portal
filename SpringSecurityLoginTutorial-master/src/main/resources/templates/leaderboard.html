@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Admin Page</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css">
+body{
+	background-image: url("images/backg.jpg");
+	background-size: 100%;
+}
+</style>
+</head>
+
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" th:href="@{/home.html}">Portal</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <!-- <li class="active"><a th:href="@{/home.html}">Home</a></li> -->
+      <!-- li><a th:href="#">Page 1</a></li>
+      <li><a href="#">Page 2</a></li> -->
+      
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a th:href="@{/logout}"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
+    
+    </ul>
+  </div>
+</nav>
+<p class="field" align="right"><b>Welcome!&nbsp</b><b th:text="${session.name}"></b></p>
+
+	<div class="container">
+	
+		<!-- <form th:action="@{/logout}" method="get">
+			<button class="btn btn-md btn-primary btn-block" name="registration"
+				type="Submit">Logout</button>
+		</form>   --> 
+	<h1 class="title" align="center">Leaderboard</h1>
+	<br>
+	<br>
+	<table class="table" border="5">
+			<tr>
+				<td class="field">ProblemID:</td>
+				<td class="field" th:text="${pId}"></td>
+			</tr>
+			</table>
+	<!-- <div align="right">SolutionID</div> -->
+	<!-- <table border="5" align="center">
+		<tr>
+			<th>Rank</th>
+			<th>Employee Id</th>
+			<th>Name</th>
+			<th>Vote Count</th>
+			<th>Solution</th>
+		</tr>
+		<tr>
+			<td th:text="${}"></td>
+			<td th:text="${}"></td>
+			<td th:text="${}"></td>
+			<td th:text="${}"></td>
+			<td th:text="${}"></td>
+
+		</tr>
+		
+	</table> -->
+	
+	<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th class="field" scope="col">Rank</th>
+      <th class="field" scope="col">Employee ID</th>
+      <th class="field" scope="col">Name</th>
+      <th class="field" scope="col">Votes</th>
+      <th class="field" scope="col">Solution</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th class="field" scope="row">1</th>
+      <td class="field">2</td>
+      <td class="field">Pratyush Gupta</td>
+      <td class="field">50</td>
+      <td class="field"><a href="#">View</a></td>
+    </tr>
+    <tr>
+      <th class="field" scope="row">2</th>
+      <td class="field">5</td>
+      <td class="field">Ritika Verma</td>
+      <td class="field">30</td>
+      <td class="field"><a href="#">View</a></td>
+    </tr>
+    <tr>
+      <th class="field" scope="row">3</th>
+      <td class="field">7</td>
+      <td class="field">Tarun Gill</td>
+      <td class="field">12</td>
+      <td class="field"><a href="#">View</a></td>
+    </tr>
+  </tbody>
+</table>
+	
+	</div>
+</body>
+
+</html>
+

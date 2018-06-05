@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Spring Security Tutorial</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css">
+body{
+	background-image: url("images/background.jpg");
+	background-size: 100%;
+}
+.form-signin {
+  max-width: 420px;
+  padding: 30px 38px 66px;
+  margin: 0 auto;
+  background-color: transparent;
+  border: 0;
+
+  }
+  .form-signin-heading {
+  text-align:center;
+  margin-bottom: 30px;
+  color: white;
+  font-size: 50px;
+  text-shadow: gray;
+  font-family: sans-serif;
+  font-style: normal;
+  
+}
+.form-control {
+  position: relative;
+  font-size: 16px;
+  height: auto;
+  padding: 10px;
+  border-radius:20px;
+  background-color: white;
+  outline: none;
+}
+</style>
+
+</head>
+
+<body>
+	<form th:action="@{/registration}" method="get">
+		<button class="btn btn-lg btn-primary btn-block" type="Submit">Go To Registration Page</button>
+	</form>	
+	
+
+	<div class="container">
+		<h3 class="form-signin-heading"  th:text="Welcome"></h3>
+			<br/>
+		<img th:src="@{/images/login.png}" class="img-responsive center-block" width="200" height="200" alt="Logo" />
+		<form th:action="@{/login}" method="POST" class="form-signin">
+			
+			<div class="input-group">
+			<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+			<input type="text" class="form-control" id="email" name="email"  th:placeholder="Email" /> <br/> 
+			</div>
+			<br>
+			<div class="input-group">
+			<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+			<input type="password" class="form-control" th:placeholder="Password" id="password" name="password" /> <br /> 
+			</div>
+			<br><br>	
+			<div align="center" th:if="${param.error}">
+				<p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
+			</div>
+			<button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" th:text="Login"></button>
+		</form>
+	</div>
+</body>
+</html>

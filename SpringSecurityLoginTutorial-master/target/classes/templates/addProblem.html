@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>AddProblem Page</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css">
+body{
+	background-image: url("images/problem.png");
+	background-size: 100%;
+}
+.center_div{
+    margin: 0 auto;
+    width:40%
+}
+.tableClass{
+	background-image: url("/images/back.jpg");
+}
+</style>
+</head>
+
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" th:href="@{/home.html}">Portal</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <!-- <li class="active"><a th:href="@{/home.html}">Home</a></li> -->
+      <!-- li><a th:href="#">Page 1</a></li>
+      <li><a href="#">Page 2</a></li> -->
+      
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a th:href="@{/logout}"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
+    
+    </ul>
+  </div>
+</nav>
+<p class="field" align="right"><b>Welcome!&nbsp</b><b th:text="${session.name}"></b></p>
+
+	<div class="container center_div">
+	
+		<!-- <form th:action="@{/logout}" method="get">
+			<button class="btn btn-md btn-primary btn-block" name="registration"
+				type="Submit">Logout</button>
+		</form>  -->   
+		
+<!-- <link rel="stylesheet" href="css/index.css">	
+		<style type="text/css">
+		body{
+			background-image: url("images/backg.jpg");
+			background-size: 100%;
+		}
+		.tabla{
+			background-image: url("images/problem1.jpg");
+			background-size: 100%;
+		}
+		</style>
+</head>
+ -->
+	<form th:action="@{/addProb}" method="post" th:object="${problem}"><!-- modelAttribute="problem"  -->
+	<h1 class="title" align="center">Add Problem</h1>
+	<br><br>
+	<table class="tableClass" th:align="center" >
+		
+		<tr>
+			<td class="field">EmployeeID:</td>
+			<!-- <td th:text="${id}"></td>
+			<td th:text="${empId}"></td> -->
+			<!-- <td th:field="${problem.empId}" th:text="${empId}"></td> -->
+			<td><textarea class="textbox" th:field="${problem.empId}" th:text="${empId}" readonly="readonly"></textarea></td>
+			<!-- <td><input name="empId" th:value="${id}" readonly="readonly" /></td> -->
+			<!-- <td><input name="empId" th:value="${problem.empId}" readonly="readonly" /></td> -->
+		
+		</tr>
+		
+		<!-- <tr>
+			<td class="field">EmployeeID:</td>
+			<td><input class="textbox" type="text" th:field="${problem.empId}"/></td>
+		
+		</tr> -->
+		<tr>
+			<td class="field">Problem Description:<br></td>
+			<td><textarea class="textbox" th:field="${problem.pDescription}"></textarea> <br>
+			<br></td>
+		</tr>
+		<tr>
+		<!-- 	<td class="field">empId:<br></td> -->
+			<!-- <td><input type="hidden"  class="textbox" th:field="${problem.empId}"/> <br>
+			<br></td> -->
+		</tr>
+		<!-- <tr>
+			<td class="field">pId:<br></td>
+			<td><textarea class="textbox" th:field="${problem.pId}"></textarea> <br>
+			<br></td>
+		</tr> -->
+		<tr>
+			<td class="field">Start Date:<br></td>
+			<td><input type="date" class="textbox" th:field="${problem.sDate}"/> <br>
+			<br></td>
+		</tr>
+		<tr>
+			<td class="field">End Date:<br></td>
+			<td><input type="date" class="textbox" th:field="${problem.eDate}"/> <br>
+			<br></td>
+		</tr>
+		<tr>
+			<td class="field">ProblemContent:<br></td>
+			<td><textarea class="textbox" th:field="${problem.pContent}"></textarea> <br>
+			<br></td>
+		</tr>
+		<tr>
+		<td colspan="2"><div align="center"><button  class="button" type="submit">Upload</button></div></td>
+		</tr>
+		
+	</table>
+	<br>
+<!-- 	<div align="center"><button class="btn btn-primary btn-lg" type="Submit">Upload</button></div>
+ -->	</form>
+	
+	<div th:if="${message ne null}">
+			<div align="center">
+				<h1 class="error" th:text="${message}"></h1>
+				<a class="button" th:href="@{/home}">Home</a>
+			</div>
+			
+		</div>
+		</div>
+</body>
+
+</html>

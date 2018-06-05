@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<head>
+<title>Admin Page</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css">
+body{
+	background-image: url("images/backg.jpg");
+	background-size: 100%;
+}
+.floatTable {
+	float: left;
+}
+
+.disabled {
+	pointer-events: none;
+	cursor: default;
+	opacity: 0.6;
+	color: gray;
+}
+
+.UndoVoteBtn {
+	display: none;
+}
+.tableClass{
+	background-image: url("/images/back.jpg");
+}
+</style>
+</head>
+
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" th:href="@{/home.html}">Portal</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <!-- <li class="active"><a th:href="@{/admin/home.html}">Home</a></li> -->
+      <!-- li><a th:href="#">Page 1</a></li>
+      <li><a href="#">Page 2</a></li> -->
+      
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a th:href="@{/logout}"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
+    
+    </ul>
+  </div>
+</nav>
+<p class="field" align="right"><b>Welcome!&nbsp</b><b th:text="${session.name}"></b></p>
+	<div class="container">
+	
+<!-- 
+		<form th:action="@{/logout}" method="get">
+			
+			<button class="btn btn-md btn-primary btn-block" name="registration"
+				type="Submit">Logout</button>
+		</form> -->
+		<h1 class="title" align="center">Solutions</h1>
+		<table border="5" class="table">
+			<tr>
+				<td class="field">PID:</td>
+				<td class="field" th:text="${pId}"></td>
+			</tr>
+		</table>	
+			
+				<div th:if="${solutionList.isEmpty()}">
+					<div>No Solutions</div>
+				</div>
+				<div th:if="${!solutionList.isEmpty()}">
+					<div th:each="solution : ${solutionList}">
+						<div class="floatTable">
+						<table border="5" class="tableClass" frame="border">
+							<tr>
+								<td class="field">SolutionId:</td>
+								<td class="field" th:text="${solution.sId}"></td>
+							</tr>
+							<tr>
+								<td class="field">Description:</td>
+								<td class="field" th:text="${solution.sDescription}" readonly="readonly" /></td>
+
+							</tr>
+							<tr>
+								<td><a class="minibutton" th:href="@{'/viewSolution.html?sId='+${solution.sId}}">View	Solution</a></td>
+								<td><div class=""><a href="'javascript:vote('+'${solution.sId})'" class="voteBtn">Vote</a></div>
+									<div class=""><a href="javascript:void(0)" vote-id="${solution.sId}" class="UndoVoteBtn" id="UndoBtn${solution.sId}">Undo</a></div></td>
+									<!-- <div class="minibutton"><button th:id="${'voteBtn_'+(iterStat.count -1)}" th:text="${snack.name} +' Vote'">TryButton</button></div> -->
+							</tr>
+						</table>
+						</div>
+					</div>
+				</div>
+		
+		</div>
+		
+		<script>
+			$(".voteBtn").click(function() {
+				var soluNo = $(this).attr("vote-id");
+				$(".voteBtn").addClass("disabled");
+			/* 	$.ajax({
+					url: "saveVote.html?sId=" + soluNo,
+					success: function(data) { */
+				$("#UndoBtn" + soluNo).show();
+					/* },
+					error: function() {
+						$(".voteBtn").removeClass("disabled");
+					}
+				}); */
+			});
+
+			$(".UndoVoteBtn").click(function() {
+				var soluNo = $(this).attr("vote-id");
+				$.ajax({
+					url: "deleteVote.html?sId=" + soluNo,
+					success: function(data) {
+				$(this).hide();
+				$(".voteBtn").removeClass("disabled");
+					}
+				});
+			});
+		</script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>View Idea Page</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css">
+body{
+	background-image: url("images/backg.jpg");
+	background-size: 100%;
+}
+.table{
+	background-image: url("/images/back.jpg");
+}
+</style>
+</head>
+
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" th:href="@{/home.html}">Portal</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <!-- <li class="active"><a th:href="@{/admin/home.html}">Home</a></li> -->
+      <!-- li><a th:href="#">Page 1</a></li>
+      <li><a href="#">Page 2</a></li> -->
+      
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a th:href="@{/logout}"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
+    
+    </ul>
+  </div>
+</nav>
+<p class="field" align="right"><b>Welcome!&nbsp</b><b th:text="${session.name}"></b></p>
+
+	<div class="container">
+	
+		<!-- <form th:action="@{/logout}" method="get">
+		<h1> Welcome ${email} !</h1>
+			<button class="btn btn-md btn-primary btn-block" name="registration"
+				type="Submit">Logout</button>
+		</form> -->   
+	<h1 class="title" align="center">Modify Idea</h1>
+	<div align="right" ><a class="button" th:href="leaderBoard.html">LeaderBoard </a></div>
+	<br><br>
+	<form th:action="@{/modifyIdea}" method="post" th:object="${idea}">
+		<table class="table" border="5" align="center">
+
+			<tr>
+
+				<td class="field">Idea ID </td>
+<!--  				<td class="field" th:text="${idea.pId}"></td>
+ --> 				<td><input type="text" class="textbox" th:field="${idea.iId}" th:text="${iId}" readonly="readonly"/></td>
+			</tr>
+			<tr>
+
+				<td class="field">EmployeeID </td>
+<!--  				<td class="field" th:text="${idea.pId}"></td>
+ --> 				<td><input type="text" class="textbox" th:field="${idea.empId}" th:text="${empId}" readonly="readonly"/></td>
+			</tr>
+			<tr>
+				<td class="field">IdeaDescription:<br></td>
+<!-- 				<td class="field" th:text="${idea.pDescription}"><br> -->
+			<td><input type="text" class="textbox" th:field="${idea.iDescription}" th:text="${iDescription}"/></td>
+				
+			</tr>
+			<tr>
+				<td class="field">IdeaContent:<br></td>
+<!-- 				<td class="field" th:text="${idea.pContent}"><br> -->
+				<td><input type="text" class="textbox" th:field="${idea.iContent}" th:text="${iContent}"/></td>
+				
+				
+			</tr>
+			<tr>
+				<td class="field">Start Date:</td>
+<!-- 				<td class="field" th:text="${idea.sDate}"></td> -->
+				<td><input type="date" class="textbox" th:field="${idea.iStartDate}" th:text="${iStartDate}"/></td>
+			</tr>
+
+			<tr>
+				<td class="field">End Date:</td>
+<!-- 				// commented line <td class="field" th:text="${idea.eDate}"></td> -->
+				<td><input type=date class="textbox" th:field="${idea.iEndDate}" th:text="${iEndDate}"/></td>
+
+			</tr>
+			
+			<!-- <tr>
+				<td>
+				&nbsp
+				</td>
+				<td align="center">
+				<input class="textbox"  type="hidden" name="pId" value="${idea.pId}"/>
+				<input class="textbox"  type="hidden" name="empId" value="${idea.empId}"/>
+				<button class="button" type="submit">AddSolution</button>
+				
+				</td>
+				
+			</tr> -->
+			
+		</table>
+		<div align="center">
+		<button class="button" type="submit">Modify</button>
+		</div>
+	</form>
+	
+		<div th:if="${message ne null}">
+			<div align="center">
+				<h1 class="error" th:text="${message}"></h1>
+				<a class="button" th:href="@{/home}">Home</a>
+			</div>
+			
+		</div>
+	
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,5 @@
+select * from User;
+
+select * from problem;
+
+DELETE FROM problem WHERE pId=3;

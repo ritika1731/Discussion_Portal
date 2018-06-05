@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>ViewSolution Page</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css">
+body{
+	background-image: url("images/backg.jpg");
+	background-size: 100%;
+}
+.table{
+	background-image: url("/images/back.jpg");
+}
+</style>
+</head>
+
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" th:href="@{/home.html}">Portal</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <!-- <li class="active"><a th:href="@{/admin/home.html}">Home</a></li> -->
+      <!-- li><a th:href="#">Page 1</a></li>
+      <li><a href="#">Page 2</a></li> -->
+      
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a th:href="@{/logout}"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
+    
+    </ul>
+  </div>
+</nav>
+	<p class="field" align="right"><b>Welcome!&nbsp</b><b th:text="${session.name}"></b></p>
+	<br><br>
+	<div class="container center_div">
+
+	<!-- 
+		<form th:action="@{/logout}" method="get">
+		
+			<button class="btn btn-md btn-primary btn-block" name="registration"
+				type="Submit">Logout</button>
+		</form>   --> 
+	<h1 class="title" align="center">Modify Solutions</h1>
+	<br><br>
+	<form th:action="@{/modifySol}" method="post" th:object="${solution}">
+	<table class="table" border="5" align="center">
+		
+		<tr>
+			<td class="field">ProblemID: </td>
+<!-- 			<td class="field" th:text="${solution.pId}"></td> -->
+			<td><input type="text" class="textbox" th:field="${solution.pId}" th:text="${pId}" readonly="readonly"/></td>
+
+		</tr>
+		<tr>
+			<td class="field">SolutionID: </td>
+<!-- 			<td class="field" th:text="${solution.sId}"></td> -->
+			<td><input type="text" class="textbox" th:field="${solution.sId}" th:text="${sId}" readonly="readonly"/></td>
+
+		</tr>
+		<tr>
+			<td class="field">EmployeeID: </td>
+<!-- 			<td class="field" th:text="${solution.empId}"></td> -->
+			<td><input type="text" class="textbox" th:field="${solution.empId}" th:text="${empId}" readonly="readonly"/></td>
+
+		</tr>
+		<tr>
+			<td class="field">SolutionDescription:<br></td>
+<!-- 			<td class="field" th:text="${solution.sDescription}"></td> -->
+			<td><input type="text" class="textbox" th:field="${solution.sDescription}" th:text="${sDescription}"/></td>
+
+		</tr>
+		<tr>
+			<td class="field">SolutionContent:<br></td>
+<!-- 			<td class="field" th:text="${solution.sContent}"></td> -->
+			<td><input class="textbox" th:field="${solution.sContent}" th:text="${sContent}"/></td>
+
+		</tr>
+		<tr>
+			<td class="field">Link: </td>
+<!-- 			<td class="field" th:text="${solution.sLink}"></td> -->
+			<td><input type="text" class="textbox" th:field="${solution.sLink}" th:text="${sLink}"/></td>
+
+		</tr>
+
+		<tr>
+<!-- 		<td><a href="">Link</a></td> -->
+			</td>
+			<!-- 			<td align="center"><input type="button" value="Vote" /></td> -->
+<!-- 			<td align="center"><input type="button" value="ModifySolution" /></td> -->
+			
+		</tr>
+	</table>
+	<div align="center">
+	<button class="button" type="submit">Modify</button>
+	</div>
+	</form>
+	
+		<div th:if="${message ne null}">
+			<div align="center">
+				<h1 class="error" th:text="${message}"></h1>
+				<a class="button" th:href="@{/home}">Home</a>
+			</div>
+			
+		</div>
+
+	</div>
+</body>
+
+</html>
