@@ -82,6 +82,11 @@ body{
 			</tr>
 			
 			<tr>
+				<td class="field">Problem Type:</td>
+				<td class="field" th:text="${problem.pType}"></td>
+			</tr>
+			
+			<tr>
 				<td class="field">No. of Solutions :<br></td>
 				<td class="field">solution count</td>
 			</tr>
@@ -92,7 +97,7 @@ body{
 				<!-- <button class="button" type="submit">AddSolution</button> -->
 				<a class="button" th:href="@{'addSolution?pId='+${problem.pId}}">AddSolution</a>
 				<a class="button" th:href="@{'modifyProblem?pId='+${problem.pId}}">ModifyProblem</a>
-				</td>
+				</td>	
 			</tr>
 			
 		</table>

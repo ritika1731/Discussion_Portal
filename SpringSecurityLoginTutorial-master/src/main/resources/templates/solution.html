@@ -103,12 +103,12 @@ body {
 							<td>
 								<div class="">
 									<button type="button" class="btn btn-success voteBtn"
-										th:attr="vote-id=${solution.sId}">Vote</button>
+										th:attr="s-id=${solution.sId}, p-Id=${pId}, user-id=${session.id}">Vote</button>
 								</div>
 
 								<div class="">
 									<button type="button" class="btn btn-warning undoVoteBtn"
-										th:attr="vote-id=${solution.sId}" disabled="true">Undo
+										th:attr="s-id=${solution.sId}, p-Id=${pId}, user-id=${session.id}" disabled="true">Undo
 										Vote</button>
 								</div>
 
@@ -124,35 +124,84 @@ body {
 
 	<script>
 		$(document).ready(function() {
-			console.log("ready!");
+			console.log("ready!" );
+			
 
 			$(".voteBtn").click(function() {
-				var soluNo = $(this).attr("vote-id");
-				alert("You have voted: " + soluNo);
+				var solId = $(this).attr("s-id");
+				var probId = $(this).attr("p-Id");
+				var userId = $(this).attr("user-id");
+				alert("You have voted: " + solId + " for problem: " + probId + " with user id: " + userId);
+				
 				$(".voteBtn").prop('disabled', true);
 
 				console.log($(".undoVoteBtn"))
 
 				var button = $(".undoVoteBtn").filter(function() {
-					return $(this).attr("vote-id") == soluNo;
+					return $(this).attr("s-id") == solId;
 				});
 				
 				button.prop('disabled', false);
 				
-				
-				
-				
-			});
+//				added ajax here
+				$.ajax({ 
+					 type : "POST", 
+					 url : "/doVote?sId="+solId+"&pId="+probId+"&id="+userId,
+					 timeout : 10000, 
+					 success : function() { 
+					 console.log("SUCCESS: "); 
+					// display(id); 
+					alert(response); 
+					}, 
+					error : function(e) { 
+					console.log("ERROR: ", e); 
+					display(e); 
+					}, 
+					done : function(e) { 
+					console.log("DONE"); 
+					} 
+					}); 
+					 
+				});
 
 			$(".undoVoteBtn").click(function() {
-				var soluNo = $(this).attr("vote-id");
-				alert("You have unvoted vote: " + soluNo);
+				var solId = $(this).attr("s-id");
+				var probId = $(this).attr("p-Id");
+				var userId = $(this).attr("user-id");
+				alert("You have unvoted: " + solId + " for problem: " + probId + " with user id: " + userId);
+				
+				$(".undoVoteBtn").prop('disabled', true);
+				
+				console.log($(".voteBtn"))
+				
+				var button = $(".voteBtn").filter(function() {
+					return $(this).attr("s-id") == solId;
+				});
+				
+				button.prop('disabled', false);
+				
 				var elRef = $(".voteBtn");
 				elRef.prop('disabled', false);
 				$(this).prop('disabled', true);
 				
-				//	added ajax here
-				
+//				added ajax here
+				$.ajax({ 
+					 type : "POST", 
+					 url : "/undoVote?sId="+solId+"&pId="+probId+"&id="+userId,
+					 timeout : 10000, 
+					 success : function() { 
+					 console.log("SUCCESS: "); 
+					// display(id); 
+					alert(response); 
+					}, 
+					error : function(e) { 
+					console.log("ERROR: ", e); 
+					display(e); 
+					}, 
+					done : function(e) { 
+					console.log("DONE"); 
+					} 
+					}); 
 				
 				
 			});

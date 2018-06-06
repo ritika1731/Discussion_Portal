@@ -79,6 +79,7 @@ public class LoginController {
 		User user = userService.findUserByEmail(auth.getName());
 		session.setAttribute("user", user);
 		session.setAttribute("name",user.getName());
+		session.setAttribute("id", user.getId());
 		modelAndView.addObject("userName", "Welcome " + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
 		//modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
 		List<Problem> plist = (List<Problem>) service.viewAllProblem();

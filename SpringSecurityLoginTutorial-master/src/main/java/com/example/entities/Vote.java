@@ -1,11 +1,20 @@
 package com.example.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
-public class Vote {
+public class Vote implements Serializable {
 
+	private static final long serialVersionUID = 7502750480982621809L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "vote_id")
 	private long voteId;
 
@@ -15,9 +24,9 @@ public class Vote {
 	@Column(name = "s_id")
 	private long sId;
 
-	@Column(name="user_id")
+	@Column(name = "user_id")
 	private long userId;
-	
+
 	public long getVoteId() {
 		return voteId;
 	}
@@ -54,12 +63,18 @@ public class Vote {
 		super();
 	}
 
+	/*public Vote(long pId, long sId, long userId) {
+		this.pId = pId;
+		this.sId = sId;
+		this.userId = userId;
+	}*/
+
 	public Vote(long voteId, long pId, long sId, long userId) {
 		super();
 		this.voteId = voteId;
 		this.pId = pId;
 		this.sId = sId;
-		this.userId=userId;
+		this.userId = userId;
 	}
 
 	@Override

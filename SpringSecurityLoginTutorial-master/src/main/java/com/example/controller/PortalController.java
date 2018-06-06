@@ -7,11 +7,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.entities.Problem;
@@ -114,11 +115,26 @@ public class PortalController {
 		return "viewSuggestion";
 	}*/
 	
-	@GetMapping("/doVote")
-	public ModelAndView doVote(Integer voteId, Integer pId, Integer sId)
+	@PostMapping("/doVote")
+	@ResponseBody
+	public Vote doVote(@RequestParam("pId") long pId, @RequestParam("sId") long sId, @RequestParam("id") long userId)
 	{
-		ModelAndView modelAndView = new ModelAndView();
-		
+		Vote vote = new Vote();
+		vote.setpId(pId);
+		vote.setsId(sId);
+		vote.setUserId(userId);
+		service.addVote(vote);
+		return vote;
+	}
+	
+	@PostMapping("/undoVote")
+	@ResponseBody
+	public String undoVote(/*@RequestParam("pId") long pId,*/ @RequestParam("sId") long sId, @RequestParam("id") long userId)
+	{
+		service.undoVote(sId, userId);
+		/*Vote vote = service.findVote(sId, userId);
+		service.deleteVote(vote);*/
+		return "deleted";
 	}
 	
 	@RequestMapping(value="/addProblem",method = RequestMethod.GET)

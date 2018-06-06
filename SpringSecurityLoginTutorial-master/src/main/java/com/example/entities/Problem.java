@@ -10,29 +10,32 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Problem implements Serializable{
-	
+public class Problem implements Serializable {
+
 	private static final long serialVersionUID = -8311263678494125976L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="p_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "p_id")
 	private long pId;
-	
-	@Column(name="emp_id")
+
+	@Column(name = "emp_id")
 	private long empId;
-	
-	@Column(name="p_description")
+
+	@Column(name = "p_description")
 	private String pDescription;
-	
-	@Column(name="p_start_date")
+
+	@Column(name = "p_start_date")
 	Date sDate;
-	
-	@Column(name="p_end_date")
+
+	@Column(name = "p_end_date")
 	Date eDate;
-	
-	@Column(name="p_content")
+
+	@Column(name = "p_content")
 	private String pContent;
+
+	@Column(name = "p_type")
+	private String pType;
 
 	public long getpId() {
 		return pId;
@@ -82,11 +85,33 @@ public class Problem implements Serializable{
 		this.pContent = pContent;
 	}
 
+	public String getpType() {
+		return pType;
+	}
+
+	public void setpType(String pType) {
+		this.pType = pType;
+	}
+
+	public Problem() {
+		super();
+	}
+
+	public Problem(long pId, long empId, String pDescription, Date sDate, Date eDate, String pContent, String pType) {
+		super();
+		this.pId = pId;
+		this.empId = empId;
+		this.pDescription = pDescription;
+		this.sDate = sDate;
+		this.eDate = eDate;
+		this.pContent = pContent;
+		this.pType = pType;
+	}
 
 	@Override
 	public String toString() {
 		return "Problem [pId=" + pId + ", empId=" + empId + ", pDescription=" + pDescription + ", sDate=" + sDate
-				+ ", eDate=" + eDate + ", pContent=" + pContent + "]";
+				+ ", eDate=" + eDate + ", pContent=" + pContent + ", pType=" + pType + "]";
 	}
-	
+
 }

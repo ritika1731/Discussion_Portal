@@ -1,6 +1,7 @@
 package com.example.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Service;
 import com.example.dao.PortalDao;
 import com.example.entities.Problem;
 import com.example.entities.Solution;
-import com.example.entities.PVote;
+import com.example.entities.Vote;
 import com.example.exceptions.PortalException;
 import com.example.model.User;
 
@@ -21,25 +22,19 @@ public class PortalServiceImpl implements PortalService {
 	@Autowired
 	PortalDao dao;
 
-
 	@Override
 	public User validateEmployee(String email) throws PortalException {
 		// TODO Auto-generated method stub
 		return dao.validateEmployee(email);
 	}
-	
-	
-	/*@Override
-	public Idea addIdea(Idea idea) {
-		return dao.addIdea(idea);
-	}
 
-	@Override
-	public IdeaSuggestion addSuggestion(IdeaSuggestion suggestion) {
-		return dao.addSuggestion(suggestion);
-	}
-	*/
-	
+	/*
+	 * @Override public Idea addIdea(Idea idea) { return dao.addIdea(idea); }
+	 * 
+	 * @Override public IdeaSuggestion addSuggestion(IdeaSuggestion suggestion) {
+	 * return dao.addSuggestion(suggestion); }
+	 */
+
 	@Override
 	public Problem addProblem(Problem problem) {
 		return dao.addProblem(problem);
@@ -50,59 +45,49 @@ public class PortalServiceImpl implements PortalService {
 		return dao.addSolution(solution);
 	}
 
-	
-	/*@Override
-	public List<Solution> loadAll() {
-		// TODO Auto-generated method stub
-		return dao.loadAll();
-	}*/
+	/*
+	 * @Override public List<Solution> loadAll() { // TODO Auto-generated method
+	 * stub return dao.loadAll(); }
+	 */
 
+	/*
+	 * @Override public List<Idea> viewAllIdea() { return dao.viewAllIdea(); }
+	 */
 
-	/*@Override
-	public List<Idea> viewAllIdea() {
-		return dao.viewAllIdea();
-	}*/
-	
 	@Override
 	public List<Problem> viewAllProblem() {
 		return dao.viewAllProblem();
 	}
 
-	
-	/*@Override
-	public Idea viewIdea(long iId) {
-		return dao.viewIdea(iId);
-	}*/
+	/*
+	 * @Override public Idea viewIdea(long iId) { return dao.viewIdea(iId); }
+	 */
 
 	@Override
 	public Problem viewProblem(long pId) {
 		return dao.viewProblem(pId);
 	}
 
+	/*
+	 * @Override public List<IdeaSuggestion> viewSuggestion(long iId) { return
+	 * dao.viewSuggestion(iId); }
+	 */
 
-	/*@Override
-	public List<IdeaSuggestion> viewSuggestion(long iId) {
-		return dao.viewSuggestion(iId);
-	}*/
-	
 	@Override
 	public List<Solution> viewSolution(long pId) {
 		return dao.viewSolution(pId);
 	}
 
+	/*
+	 * @Override public List<Solution> viewAllSolutions() { // TODO Auto-generated
+	 * method stub return dao.viewAllSolutions(); }
+	 */
 
-	/*@Override
-	public List<Solution> viewAllSolutions() {
-		// TODO Auto-generated method stub
-		return dao.viewAllSolutions();
-	}*/
+	/*
+	 * @Override public IdeaSuggestion viewSingleIdeaSuggestion(long siId) { return
+	 * dao.viewSingleIdeaSolution(siId); }
+	 */
 
-	
-	/*@Override
-	public IdeaSuggestion viewSingleIdeaSuggestion(long siId) {
-		return dao.viewSingleIdeaSolution(siId);
-	}*/
-	
 	@Override
 	public Solution viewSingleSolution(long sId) {
 		return dao.viewSingleSolution(sId);
@@ -120,18 +105,23 @@ public class PortalServiceImpl implements PortalService {
 		return dao.modifySolution(solution);
 	}
 
-
 	@Override
-	public PVote addVote(PVote vote) {
+	public Vote addVote(Vote vote) {
 		// TODO Auto-generated method stub
 		return dao.addVote(vote);
 	}
 
+	@Override
+	public Vote findVote(long sId, long userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
-	public void undoVote(long id) {
-		dao.undoVote(id);
-	} 
-
+	public Vote undoVote(long sId, long userId) {
+		// TODO Auto-generated method stub
+		
+		return dao.undoVote(sId,userId);
+	}
 
 }

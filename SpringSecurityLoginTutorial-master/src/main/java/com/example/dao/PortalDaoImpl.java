@@ -1,6 +1,7 @@
 package com.example.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.entities.Problem;
 import com.example.entities.Solution;
-import com.example.entities.PVote;
+import com.example.entities.Vote;
 import com.example.exceptions.PortalException;
 import com.example.model.User;
 
@@ -140,19 +141,28 @@ public class PortalDaoImpl implements PortalDao {
 	}
 
 	@Override
-	public PVote addVote(PVote vote) {
+	public Vote addVote(Vote vote) {
 		// TODO Auto-generated method stub
 		entityManager.persist(vote);
 		entityManager.flush();
 		return vote;
 	}
-	
+
 	@Override
 	public void undoVote(long id) {
 		// TODO Auto-generated method stub
-		PVote vote = entityManager.find(PVote.class, id);
+		Vote vote = entityManager.find(Vote.class, id);
 		entityManager.remove(vote);
 		entityManager.flush();
+	}
+
+	@Override
+	public Vote undoVote(long sId, long userId) {
+		entityManager.find(Vote.class, sId);
+		entityManager.find(Vote.class, userId);
+
+		//vote.get();
+		return null;
 	}
 
 }
