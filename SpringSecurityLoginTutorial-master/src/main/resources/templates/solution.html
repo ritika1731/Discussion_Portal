@@ -14,10 +14,11 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style type="text/css">
-body{
+body {
 	background-image: url("images/backg.jpg");
 	background-size: 100%;
 }
+
 .floatTable {
 	float: left;
 }
@@ -32,34 +33,38 @@ body{
 .UndoVoteBtn {
 	display: none;
 }
-.tableClass{
+
+.tableClass {
 	background-image: url("/images/back.jpg");
 }
 </style>
 </head>
 
 <body>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" th:href="@{/home.html}">Portal</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <!-- <li class="active"><a th:href="@{/admin/home.html}">Home</a></li> -->
-      <!-- li><a th:href="#">Page 1</a></li>
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" th:href="@{/home.html}">Portal</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<!-- <li class="active"><a th:href="@{/admin/home.html}">Home</a></li> -->
+				<!-- li><a th:href="#">Page 1</a></li>
       <li><a href="#">Page 2</a></li> -->
-      
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a th:href="@{/logout}"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
-    
-    </ul>
-  </div>
-</nav>
-<p class="field" align="right"><b>Welcome!&nbsp</b><b th:text="${session.name}"></b></p>
+
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a th:href="@{/logout}"><span
+						class="glyphicon glyphicon-user"></span> Logout</a></li>
+
+			</ul>
+		</div>
+	</nav>
+	<p class="field" align="right">
+		<b>Welcome!&nbsp</b><b th:text="${session.name}"></b>
+	</p>
 	<div class="container">
-	
-<!-- 
+
+		<!-- 
 		<form th:action="@{/logout}" method="get">
 			
 			<button class="btn btn-md btn-primary btn-block" name="registration"
@@ -71,62 +76,119 @@ body{
 				<td class="field">PID:</td>
 				<td class="field" th:text="${pId}"></td>
 			</tr>
-		</table>	
-			
-				<div th:if="${solutionList.isEmpty()}">
-					<div>No Solutions</div>
-				</div>
-				<div th:if="${!solutionList.isEmpty()}">
-					<div th:each="solution : ${solutionList}">
-						<div class="floatTable">
-						<table border="5" class="tableClass" frame="border">
-							<tr>
-								<td class="field">SolutionId:</td>
-								<td class="field" th:text="${solution.sId}"></td>
-							</tr>
-							<tr>
-								<td class="field">Description:</td>
-								<td class="field" th:text="${solution.sDescription}" readonly="readonly" /></td>
+		</table>
 
-							</tr>
-							<tr>
-								<td><a class="minibutton" th:href="@{'/viewSolution.html?sId='+${solution.sId}}">View	Solution</a></td>
-								<td><div class=""><a href="'javascript:vote('+'${solution.sId})'" class="voteBtn">Vote</a></div>
-									<div class=""><a href="javascript:void(0)" vote-id="${solution.sId}" class="UndoVoteBtn" id="UndoBtn${solution.sId}">Undo</a></div></td>
-									<!-- <div class="minibutton"><button th:id="${'voteBtn_'+(iterStat.count -1)}" th:text="${snack.name} +' Vote'">TryButton</button></div> -->
-							</tr>
-						</table>
-						</div>
-					</div>
-				</div>
-		
+		<div th:if="${solutionList.isEmpty()}">
+			<div>No Solutions</div>
 		</div>
-		
-		<script>
+		<div th:if="${!solutionList.isEmpty()}">
+			<div th:each="solution : ${solutionList}">
+				<div class="floatTable">
+					<table border="5" class="tableClass" frame="border">
+						<tr>
+							<td class="field">SolutionId:</td>
+							<td class="field" th:text="${solution.sId}"></td>
+						</tr>
+						<tr>
+							<td class="field">Description:</td>
+							<td class="field" th:text="${solution.sDescription}"
+								readonly="readonly" /></td>
+
+						</tr>
+						<tr>
+							<td><a class="minibutton"
+								th:href="@{'/viewSolution.html?sId='+${solution.sId}}">View
+									Solution</a></td>
+
+							<td>
+								<div class="">
+									<button type="button" class="btn btn-success voteBtn"
+										th:attr="vote-id=${solution.sId}">Vote</button>
+								</div>
+
+								<div class="">
+									<button type="button" class="btn btn-warning undoVoteBtn"
+										th:attr="vote-id=${solution.sId}" disabled="true">Undo
+										Vote</button>
+								</div>
+
+							</td>
+							<!-- <div class="minibutton"><button th:id="${'voteBtn_'+(iterStat.count -1)}" th:text="${snack.name} +' Vote'">TryButton</button></div> -->
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<script>
+		$(document).ready(function() {
+			console.log("ready!");
+
 			$(".voteBtn").click(function() {
 				var soluNo = $(this).attr("vote-id");
-				$(".voteBtn").addClass("disabled");
-			/* 	$.ajax({
-					url: "saveVote.html?sId=" + soluNo,
-					success: function(data) { */
-				$("#UndoBtn" + soluNo).show();
-					/* },
-					error: function() {
-						$(".voteBtn").removeClass("disabled");
-					}
-				}); */
+				alert("You have voted: " + soluNo);
+				$(".voteBtn").prop('disabled', true);
+
+				console.log($(".undoVoteBtn"))
+
+				var button = $(".undoVoteBtn").filter(function() {
+					return $(this).attr("vote-id") == soluNo;
+				});
+				
+				button.prop('disabled', false);
+				
+				
+				
+				
 			});
 
-			$(".UndoVoteBtn").click(function() {
+			$(".undoVoteBtn").click(function() {
 				var soluNo = $(this).attr("vote-id");
-				$.ajax({
-					url: "deleteVote.html?sId=" + soluNo,
-					success: function(data) {
-				$(this).hide();
-				$(".voteBtn").removeClass("disabled");
-					}
-				});
+				alert("You have unvoted vote: " + soluNo);
+				var elRef = $(".voteBtn");
+				elRef.prop('disabled', false);
+				$(this).prop('disabled', true);
+				
+				//	added ajax here
+				
+				
+				
 			});
-		</script>
+
+		});
+
+		// 	$( document ).ready(function() {
+		// 	    console.log( "ready!" );
+
+		// 	    $(".voteBtn").click(function() {
+		// 			var soluNo = $(this).attr("vote-id");
+		// 			alert("You have voted" + soluNo);
+		// 			$(".voteBtn").addClass("disabled"=true);
+		// 		/* 	$.ajax({
+		// 				url: "saveVote.html?sId=" + soluNo,
+		// 				success: function(data) { */
+		// 			$("#UndoBtn" + soluNo).show();
+		// 				/* },
+		// 				error: function() {
+		// 					$(".voteBtn").removeClass("disabled");
+		// 				}
+		// 			}); */
+		// 		});
+
+		// 		$(".UndoVoteBtn").click(function() {
+		// 			var soluNo = $(this).attr("vote-id");
+		// 		/* 	$.ajax({
+		// 				url: "deleteVote.html?sId=" + soluNo,
+		// 				success: function(data) { */
+		// 			$(this).hide();
+		// 			$(".voteBtn").removeClass("disabled");
+		// 				}
+		// 			});
+		// 		});
+
+		// 	});
+	</script>
 </body>
 </html>

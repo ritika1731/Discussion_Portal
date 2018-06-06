@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.entities.Problem;
 import com.example.entities.Solution;
+import com.example.entities.PVote;
 import com.example.exceptions.PortalException;
 import com.example.model.User;
 
@@ -63,4 +64,8 @@ public interface PortalService {
 	
 	/*public List<Solution> viewAllSolutions();*/
 	
+	public PVote addVote(PVote vote);
+	
+	public void undoVote(long id);
+
 }

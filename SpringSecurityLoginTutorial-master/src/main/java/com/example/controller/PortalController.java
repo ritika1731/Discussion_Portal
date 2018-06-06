@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.entities.Problem;
 import com.example.entities.Solution;
+import com.example.entities.Vote;
 import com.example.model.User;
 import com.example.services.PortalService;
 
@@ -24,7 +26,6 @@ public class PortalController {
 
 	@Autowired
 	PortalService service;
-	
 		
 	/*@RequestMapping("/home")
 	public String retrieveAll(Model model)
@@ -113,6 +114,13 @@ public class PortalController {
 		return "viewSuggestion";
 	}*/
 	
+	@GetMapping("/doVote")
+	public ModelAndView doVote(Integer voteId, Integer pId, Integer sId)
+	{
+		ModelAndView modelAndView = new ModelAndView();
+		
+	}
+	
 	@RequestMapping(value="/addProblem",method = RequestMethod.GET)
 	public ModelAndView addProblem(Integer id,Model model,HttpSession session)
 	{
@@ -192,6 +200,12 @@ public class PortalController {
 		return "viewSolution";
 	}
 	
+	/*@RequestMapping("/vote")
+	public String addVote(@ModelAttribute("vote") Vote vote)
+	{
+		Vote votes = service.addVote(vote);
+		return null;
+	}*/
 	
 	@RequestMapping(value="/modifyProblem",method = RequestMethod.GET)
 	public String modifyProblem(@RequestParam("pId") Long pId,Model model)

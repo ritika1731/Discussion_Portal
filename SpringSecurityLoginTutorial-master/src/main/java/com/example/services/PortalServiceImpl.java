@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.example.dao.PortalDao;
 import com.example.entities.Problem;
 import com.example.entities.Solution;
+import com.example.entities.PVote;
 import com.example.exceptions.PortalException;
 import com.example.model.User;
 
@@ -117,6 +118,19 @@ public class PortalServiceImpl implements PortalService {
 	public Solution modifySolution(Solution solution) {
 		// TODO Auto-generated method stub
 		return dao.modifySolution(solution);
+	}
+
+
+	@Override
+	public PVote addVote(PVote vote) {
+		// TODO Auto-generated method stub
+		return dao.addVote(vote);
+	}
+
+
+	@Override
+	public void undoVote(long id) {
+		dao.undoVote(id);
 	} 
 
 
