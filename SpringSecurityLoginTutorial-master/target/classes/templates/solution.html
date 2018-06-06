@@ -99,7 +99,7 @@ body {
 							<td><a class="minibutton"
 								th:href="@{'/viewSolution.html?sId='+${solution.sId}}">View
 									Solution</a></td>
-
+							
 							<td>
 								<div class="">
 									<button type="button" class="btn btn-success voteBtn"
@@ -113,6 +113,8 @@ body {
 								</div>
 
 							</td>
+							</th:if>
+							
 							<!-- <div class="minibutton"><button th:id="${'voteBtn_'+(iterStat.count -1)}" th:text="${snack.name} +' Vote'">TryButton</button></div> -->
 						</tr>
 					</table>

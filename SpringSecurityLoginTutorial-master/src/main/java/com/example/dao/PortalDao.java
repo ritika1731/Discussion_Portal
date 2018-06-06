@@ -8,7 +8,7 @@ import com.example.entities.Vote;
 import com.example.exceptions.PortalException;
 import com.example.model.User;
 
-public interface PortalDao {
+public interface PortalDao  {
 
 	public User validateEmployee(String email) throws PortalException;
 
@@ -46,7 +46,7 @@ public interface PortalDao {
 
 	public Vote addVote(Vote vote);
 
-	public void undoVote(long id);
+	//public void undoVote(long id);
 
 	public Vote undoVote(long sId, long userId);
 

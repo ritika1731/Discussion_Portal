@@ -1,7 +1,6 @@
 package com.example.dao;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -148,20 +147,39 @@ public class PortalDaoImpl implements PortalDao {
 		return vote;
 	}
 
-	@Override
+	/*@Override
 	public void undoVote(long id) {
 		// TODO Auto-generated method stub
 		Vote vote = entityManager.find(Vote.class, id);
 		entityManager.remove(vote);
 		entityManager.flush();
-	}
+	}*/
 
 	@Override
 	public Vote undoVote(long sId, long userId) {
-		entityManager.find(Vote.class, sId);
-		entityManager.find(Vote.class, userId);
-
-		//vote.get();
+		String query = "SELECT v FROM Vote v WHERE s_Id= :sId AND user_Id= :userId";
+		TypedQuery<Vote> typedQuery = entityManager.createQuery(query,Vote.class);
+//		entityManager.find(Vote.class, sId);
+//		entityManager.find(Vote.class, userId);
+		typedQuery.setParameter("sId", sId);
+		typedQuery.setParameter("userId", userId);
+	
+		List<Vote> vote= typedQuery.getResultList();
+		System.out.println(vote);
+		if(vote.equals(null))
+			//not exists
+		{
+			System.out.println("No vote present");
+		}
+		else
+		{
+			System.out.println(vote);
+			for (Vote eachvote : vote) {
+				entityManager.remove(eachvote);
+			}
+			//entityManager.remove(vote);
+		}
+		
 		return null;
 	}
 
