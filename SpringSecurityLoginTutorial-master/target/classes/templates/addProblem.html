@@ -86,8 +86,8 @@ body{
 		
 		</tr> -->
 		<tr>
-			<td class="field">Problem Description:<br></td>
-			<td><textarea class="textbox" th:field="${problem.pDescription}"></textarea> <br>
+			<td class="field">Problem Statement:<br></td>
+			<td><textarea class="textbox" th:field="${problem.pDescription}" required="required"></textarea> <br>
 			<br></td>
 		</tr>
 		<tr>
@@ -102,23 +102,23 @@ body{
 		</tr> -->
 		<tr>
 			<td class="field">Start Date:<br></td>
-			<td><input type="date" class="textbox" th:field="${problem.sDate}"/> <br>
+			<td><input type="date" class="textbox" th:field="${problem.sDate}" required="required"/> <br>
 			<br></td>
 		</tr>
 		<tr>
 			<td class="field">End Date:<br></td>
-			<td><input type="date" class="textbox" th:field="${problem.eDate}"/> <br>
+			<td><input type="date" class="textbox" th:field="${problem.eDate}" required="required"/> <br>
 			<br></td>
 		</tr>
 		<tr>
 			<td class="field">ProblemContent:<br></td>
-			<td><textarea class="textbox" th:field="${problem.pContent}"></textarea> <br>
+			<td><textarea class="textbox" th:field="${problem.pContent}" required="required"></textarea> <br>
 			<br></td>
 		</tr>
 		<tr>
 			<td class ="field">Problem Type:</td>
 			<td>
-			<select name="pType" class="textbox">
+			<select name="pType" class="textbox" required="required">
 		  		<option value="0">-Select-</option>
 		  		<option value="volvo">Volvo</option>
 		  		<option value="saab">Saab</option>

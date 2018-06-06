@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.sun.istack.internal.NotNull;
+
 @Entity
 public class Problem implements Serializable {
 
@@ -20,21 +22,27 @@ public class Problem implements Serializable {
 	private long pId;
 
 	@Column(name = "emp_id")
+	@NotNull
 	private long empId;
 
 	@Column(name = "p_description")
+	@NotNull
 	private String pDescription;
 
 	@Column(name = "p_start_date")
+	@NotNull
 	Date sDate;
 
 	@Column(name = "p_end_date")
+	@NotNull
 	Date eDate;
 
 	@Column(name = "p_content")
+	@NotNull
 	private String pContent;
 
 	@Column(name = "p_type")
+	@NotNull
 	private String pType;
 
 	public long getpId() {

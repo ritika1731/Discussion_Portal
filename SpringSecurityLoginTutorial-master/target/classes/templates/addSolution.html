@@ -66,13 +66,13 @@ body{
 				<!-- <td><input type="text" name="id" th:value="${id}" /></td> -->
 			</tr>
 			<tr>	
-				<td class="field">SolutionDescription:<br></td>
-				<td><textarea class="textbox"  th:field="${solution.sDescription}"></textarea> <br>
+				<td class="field">Solution Statement:<br></td>
+				<td><textarea class="textbox"  th:field="${solution.sDescription}" required="required"></textarea> <br>
 					<br></td>
 			</tr>
 			<tr>
 				<td class="field">SolutionContent:<br></td>
-				<td><textarea class="textbox"  th:field="${solution.sContent}"></textarea> <br>
+				<td><textarea class="textbox"  th:field="${solution.sContent}" ></textarea> <br>
 					<br></td>
 			</tr>
 			<tr>
