@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.entities.Problem;
@@ -129,9 +130,9 @@ public class PortalController {
 	
 	@PostMapping("/undoVote")
 	@ResponseBody
-	public String undoVote(/*@RequestParam("pId") long pId,*/ @RequestParam("sId") long sId, @RequestParam("id") long userId)
+	public String undoVote(@RequestParam("pId") long pId, @RequestParam("sId") long sId, @RequestParam("id") long userId)
 	{
-		service.undoVote(sId, userId);
+		service.undoVote(pId, sId, userId);
 		/*Vote vote = service.findVote(sId, userId);
 		service.deleteVote(vote);*/
 		return "deleted";
@@ -170,8 +171,10 @@ public class PortalController {
 		return "viewProblem";
 	}
 			
-	@RequestMapping("/addSolution")
-	public ModelAndView addSolution(@RequestParam("pId")String pId, Integer id, Model model, HttpSession session)
+	@PostMapping(path="/addSolution"/*,consumes=MediaType.MULTIPART_FORM_DATA*/)
+	public ModelAndView addSolution(
+			@RequestParam("file") MultipartFile file,
+			@RequestParam("pId")String pId, Integer id, Model model, HttpSession session)
 	{
 		ModelAndView modelAndView = new ModelAndView();
 		User user=(User) session.getAttribute("user");

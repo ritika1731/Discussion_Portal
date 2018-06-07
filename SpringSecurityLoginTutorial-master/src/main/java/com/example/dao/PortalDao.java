@@ -7,6 +7,7 @@ import com.example.entities.Solution;
 import com.example.entities.Vote;
 import com.example.exceptions.PortalException;
 import com.example.model.User;
+import com.example.wrapper.SolutionWrap;
 
 public interface PortalDao  {
 
@@ -48,6 +49,8 @@ public interface PortalDao  {
 
 	//public void undoVote(long id);
 
-	public Vote undoVote(long sId, long userId);
+	public Vote undoVote(long pId, long sId, long userId);
+
+	public List<SolutionWrap> viewSolution(long pId, long sId, long userId);
 
 }

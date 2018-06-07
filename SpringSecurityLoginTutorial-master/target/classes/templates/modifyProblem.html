@@ -48,7 +48,9 @@ body {
 	</p>
 
 	<div class="container">
-
+<div align="left">
+			<a class="button" th:href="@{'/viewProblem?pId='+${problem.pId}}">Back </a>
+		</div>
 		<!-- <form th:action="@{/logout}" method="get">
 		<h1> Welcome ${email} !</h1>
 			<button class="btn btn-md btn-primary btn-block" name="registration"
@@ -57,7 +59,9 @@ body {
 		<h1 class="title" align="center">Modify Problem</h1>
 		<div align="right">
 			<a class="button" th:href="leaderBoard.html">LeaderBoard </a>
+			
 		</div>
+			
 		<br>
 		<br>
 		<form th:action="@{/modifyProb}" method="post" th:object="${problem}">

@@ -41,7 +41,10 @@ body{
 <p class="field" align="right"><b>Welcome!&nbsp</b><b th:text="${session.name}"></b></p>
 
 	<div class="container">
-	
+	<div align="left">
+			<a class="button" th:href="@{/home}">Back
+			</a>
+		</div>
 		<!-- <form th:action="@{/logout}" method="get">
 		<h1> Welcome ${email} !</h1>
 			<button class="btn btn-md btn-primary btn-block" name="registration"

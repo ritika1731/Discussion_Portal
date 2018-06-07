@@ -1,7 +1,6 @@
 package com.example.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -14,6 +13,7 @@ import com.example.entities.Solution;
 import com.example.entities.Vote;
 import com.example.exceptions.PortalException;
 import com.example.model.User;
+import com.example.wrapper.SolutionWrap;
 
 @Service
 @Transactional
@@ -75,6 +75,9 @@ public class PortalServiceImpl implements PortalService {
 
 	@Override
 	public List<Solution> viewSolution(long pId) {
+		List<Solution> solutionList= dao.viewSolution(pId);
+		//List<SolutionWrap> solutionWrapList= dao.viewSolution(pId);
+		
 		return dao.viewSolution(pId);
 	}
 
@@ -118,10 +121,10 @@ public class PortalServiceImpl implements PortalService {
 	}
 
 	@Override
-	public Vote undoVote(long sId, long userId) {
+	public Vote undoVote(long pId, long sId, long userId) {
 		// TODO Auto-generated method stub
 		
-		return dao.undoVote(sId,userId);
+		return dao.undoVote(pId, sId,userId);
 	}
 
 }

@@ -86,7 +86,7 @@ body{
 		
 		</tr> -->
 		<tr>
-			<td class="field">Problem Statement:<br></td>
+			<td class="field">Problem <font color="red">*</font> Statement:<br></td>
 			<td><textarea class="textbox" th:field="${problem.pDescription}" required="required"></textarea> <br>
 			<br></td>
 		</tr>
@@ -101,22 +101,22 @@ body{
 			<br></td>
 		</tr> -->
 		<tr>
-			<td class="field">Start Date:<br></td>
+			<td class="field">Start Date:<font color="red">*</font><br></td>
 			<td><input type="date" class="textbox" th:field="${problem.sDate}" required="required"/> <br>
 			<br></td>
 		</tr>
 		<tr>
-			<td class="field">End Date:<br></td>
+			<td class="field">End Date:<font color="red">*</font><br></td>
 			<td><input type="date" class="textbox" th:field="${problem.eDate}" required="required"/> <br>
 			<br></td>
 		</tr>
 		<tr>
-			<td class="field">ProblemContent:<br></td>
+			<td class="field">ProblemContent:<font color="red">*</font><br></td>
 			<td><textarea class="textbox" th:field="${problem.pContent}" required="required"></textarea> <br>
 			<br></td>
 		</tr>
 		<tr>
-			<td class ="field">Problem Type:</td>
+			<td class ="field">Problem Type:<font color="red">*</font></td>
 			<td>
 			<select name="pType" class="textbox" required="required">
 		  		<option value="0">-Select-</option>
@@ -132,7 +132,10 @@ body{
 		</tr>
 		
 	</table>
-	<br>
+			<p align="center">
+				<font color="red"><b>All (*) are mandatory</b></font>
+			</p>
+			<br>
 <!-- 	<div align="center"><button class="btn btn-primary btn-lg" type="Submit">Upload</button></div>
  -->	</form>
 	

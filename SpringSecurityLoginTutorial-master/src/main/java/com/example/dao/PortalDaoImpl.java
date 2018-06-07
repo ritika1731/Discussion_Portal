@@ -13,6 +13,7 @@ import com.example.entities.Solution;
 import com.example.entities.Vote;
 import com.example.exceptions.PortalException;
 import com.example.model.User;
+import com.example.wrapper.SolutionWrap;
 
 @Repository
 public class PortalDaoImpl implements PortalDao {
@@ -103,11 +104,30 @@ public class PortalDaoImpl implements PortalDao {
 	 */
 
 	@Override
-	public List<Solution> viewSolution(long pId) {
+//	public List<Solution> viewSolution(long pId) {
+	public List<SolutionWrap> viewSolution(long pId, long sId, long userId) {
 		TypedQuery<Solution> typedQuery = entityManager.createQuery("SELECT s FROM Solution s WHERE pId= :pId",
 				Solution.class);
 		typedQuery.setParameter("pId", pId);
-		return typedQuery.getResultList();
+		
+		List <Solution> listOfSol = typedQuery.getResultList();
+		for (Solution sol : listOfSol) {
+			/*CreateDTO*/ 
+			SolutionWrap solWrap = new SolutionWrap();
+			solWrap.setSolution(sol);
+			solWrap.setSolutionPresence(true);
+			
+			/*findinVoteTable4 and set boolean*/
+			TypedQuery<Vote> typedQueryVote = entityManager.createQuery("SELECT v FROM Vote v WHERE pId= :pId AND s_Id= :sId AND user_Id= :userId",
+					Vote.class);
+			typedQueryVote.setParameter("pId", pId);
+			typedQueryVote.setParameter("sId", sId);
+			typedQueryVote.setParameter("userId", userId);
+			
+		}
+		
+//		return typedQuery.getResultList();
+		return null;
 	}
 
 	/*
@@ -156,11 +176,12 @@ public class PortalDaoImpl implements PortalDao {
 	}*/
 
 	@Override
-	public Vote undoVote(long sId, long userId) {
-		String query = "SELECT v FROM Vote v WHERE s_Id= :sId AND user_Id= :userId";
+	public Vote undoVote(long pId, long sId, long userId) {
+		String query = "SELECT v FROM Vote v WHERE p_id=:pId AND s_Id= :sId AND user_Id= :userId";
 		TypedQuery<Vote> typedQuery = entityManager.createQuery(query,Vote.class);
 //		entityManager.find(Vote.class, sId);
 //		entityManager.find(Vote.class, userId);
+		typedQuery.setParameter("pId", pId);
 		typedQuery.setParameter("sId", sId);
 		typedQuery.setParameter("userId", userId);
 	
@@ -180,6 +201,12 @@ public class PortalDaoImpl implements PortalDao {
 			//entityManager.remove(vote);
 		}
 		
+		return null;
+	}
+
+	@Override
+	public List<Solution> viewSolution(long pId) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

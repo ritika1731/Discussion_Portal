@@ -73,13 +73,13 @@ body {
 		<h1 class="title" align="center">Solutions</h1>
 		<table border="5" class="table">
 			<tr>
-				<td class="field">PID:</td>
+				<td class="field">Problem ID:</td>
 				<td class="field" th:text="${pId}"></td>
 			</tr>
 		</table>
-
+<br>
 		<div th:if="${solutionList.isEmpty()}">
-			<div>No Solutions</div>
+			<div align="center"><b><font size="4">No Solutions</font></b></div>
 		</div>
 		<div th:if="${!solutionList.isEmpty()}">
 			<div th:each="solution : ${solutionList}">
@@ -99,7 +99,7 @@ body {
 							<td><a class="minibutton"
 								th:href="@{'/viewSolution.html?sId='+${solution.sId}}">View
 									Solution</a></td>
-							
+					
 							<td>
 								<div class="">
 									<button type="button" class="btn btn-success voteBtn"
@@ -113,7 +113,7 @@ body {
 								</div>
 
 							</td>
-							</th:if>
+							
 							
 							<!-- <div class="minibutton"><button th:id="${'voteBtn_'+(iterStat.count -1)}" th:text="${snack.name} +' Vote'">TryButton</button></div> -->
 						</tr>

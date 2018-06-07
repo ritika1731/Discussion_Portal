@@ -54,6 +54,6 @@ public interface PortalService {
 
 	public Vote findVote(long sId, long userId);
 
-	public Vote undoVote(long sId, long userId);
+	public Vote undoVote(long pId, long sId, long userId);
 
 }
